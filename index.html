@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIPP - SDN 2 KALANGLUNDO</title>
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --primary-hover: #1e40af;
+            --secondary-color: #0284c7;
+            --accent-color: #f59e0b;
+            --bg-light: #f8fafc;
+            --surface-color: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --radius-md: 10px;
+            --radius-lg: 16px;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header / Navbar */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-md);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand i {
+            font-size: 2rem;
+            color: var(--accent-color);
+        }
+
+        .brand-text h1 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .brand-text p {
+            font-size: 0.8rem;
+            opacity: 0.85;
+        }
+
+        /* Hero Banner */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 3rem 1.5rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h2 {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Container & Grid Layout */
+        .main-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+            width: 100%;
+            flex: 1;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Module Cards */
+        .card {
+            background-color: var(--surface-color);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1rem;
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-md);
+            background-color: rgba(30, 58, 138, 0.1);
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .card-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .card-list {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-list li {
+            padding: 0.5rem 0;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .card-list li i {
+            color: var(--secondary-color);
+            font-size: 0.8rem;
+        }
+
+        .btn {
+            display: inline-block;
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn-accent {
+            background-color: var(--accent-color);
+            color: var(--text-main);
+        }
+
+        .btn-accent:hover {
+            background-color: #d97706;
+            color: white;
+        }
+
+        /* Download Rapor Section (Highlight) */
+        .download-section {
+            background-color: var(--surface-color);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow-sm);
+            border: 2px solid var(--secondary-color);
+            margin-bottom: 3rem;
+        }
+
+        .download-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+            align-items: end;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .form-group input, .form-group select {
+            padding: 0.65rem 0.85rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            font-size: 0.9rem;
+            outline: none;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.2);
+        }
+
+        /* Result Download Area */
+        .result-box {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background-color: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: var(--radius-md);
+            display: none;
+        }
+
+        .result-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .result-info h4 {
+            color: #166534;
+            font-size: 1rem;
+        }
+
+        .result-info p {
+            color: #15803d;
+            font-size: 0.85rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            font-size: 0.85rem;
+            margin-top: auto;
+        }
+
+        footer p {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 600px) {
+            .hero h2 {
+                font-size: 1.5rem;
+            }
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="brand">
+                <i class="fa-solid fa-school"></i>
+                <div class="brand-text">
+                    <h1>SIPP SDN 2 KALANGLUNDO</h1>
+                    <p>Sistem Informasi Pelayanan & Pelaporan Sekolah</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Portal Layanan Terpadu Sekolah</h2>
+            <p>Akses informasi, jurnal pengajaran guru, layanan pengaduan wali murid, dan unduh hasil rekapitulasi rapor/nilai secara cepat dan mudah.</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-container">
+
+        <!-- Fitur Khusus Download Rapor & Nilai -->
+        <section class="download-section" id="unduh-rapor">
+            <h3 class="section-title"><i class="fa-solid fa-file-arrow-down"></i> Layanan Unduh Rapor & Nilai Siswa</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Masukkan NISN dan pilih semester untuk mengunduh dokumen Hasil Belajar (Rapor Digital).</p>
+            
+            <form class="download-form" id="searchForm" onsubmit="handleSearch(event)">
+                <div class="form-group">
+                    <label for="nisn">NISN Siswa</label>
+                    <input type="text" id="nisn" placeholder="Contoh: 0123456789" required>
+                </div>
+                <div class="form-group">
+                    <label for="kelas">Kelas</label>
+                    <select id="kelas" required>
+                        <option value="">-- Pilih Kelas --</option>
+                        <option value="1">Kelas 1</option>
+                        <option value="2">Kelas 2</option>
+                        <option value="3">Kelas 3</option>
+                        <option value="4">Kelas 4</option>
+                        <option value="5">Kelas 5</option>
+                        <option value="6">Kelas 6</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="semester">Semester</label>
+                    <select id="semester" required>
+                        <option value="Ganjil 2025/2026">Ganjil (2025/2026)</option>
+                        <option value="Genap 2025/2026">Genap (2025/2026)</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-accent"><i class="fa-solid fa-magnifying-glass"></i> Cari Rapor</button>
+            </form>
+
+            <!-- Box Hasil Pencarian -->
+            <div class="result-box" id="resultBox">
+                <div class="result-content">
+                    <div class="result-info">
+                        <h4 id="resNama"><i class="fa-solid fa-circle-check"></i> Dokumen Rapor Ditemukan!</h4>
+                        <p id="resDetail">NISN: 0123456789 | Kelas: 5 | Semester: Ganjil 2025/2026</p>
+                    </div>
+                    <div>
+                        <a href="#" id="downloadBtn" class="btn" onclick="alert('Mengunduh file PDF Rapor...')">
+                            <i class="fa-solid fa-download"></i> Unduh Rapor (PDF)
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Grid Modul SIPP (Eksklusi Modul Siswa) -->
+        <h3 class="section-title"><i class="fa-solid fa-cubes"></i> Modul Utama SIPP</h3>
+        <div class="modules-grid">
+
+            <!-- 1. Modul Guru -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon"><i class="fa-solid fa-chalkboard-user"></i></div>
+                    <div class="card-title">Modul Guru</div>
+                </div>
+                <ul class="card-list">
+                    <li><i class="fa-solid fa-check"></i> Jurnal Mengajar Harian</li>
+                    <li><i class="fa-solid fa-check"></i> Presensi Kehadiran Siswa</li>
+                    <li><i class="fa-solid fa-check"></i> Input Nilai Formatif & Sumatif</li>
+                    <li><i class="fa-solid fa-check"></i> Pelaporan Kinerja Guru (PMM)</li>
+                </ul>
+                <button class="btn" onclick="alert('Mengarah ke Login/Portal Guru')">Akses Portal Guru</button>
+            </div>
+
+            <!-- 2. Modul Wali Murid -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon"><i class="fa-solid fa-users"></i></div>
+                    <div class="card-title">Modul Wali Murid</div>
+                </div>
+                <ul class="card-list">
+                    <li><i class="fa-solid fa-check"></i> Pantau Kehadiran Harian Anak</li>
+                    <li><i class="fa-solid fa-check"></i> Informasi Kalender Akademik</li>
+                    <li><i class="fa-solid fa-check"></i> Pengumuman & Surat Edaran</li>
+                    <li><i class="fa-solid fa-check"></i> Kanal Aspirasi & Pengaduan</li>
+                </ul>
+                <button class="btn" onclick="alert('Mengarah ke Portal Wali Murid')">Akses Portal Wali</button>
+            </div>
+
+            <!-- 3. Modul Layanan Sekolah -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon"><i class="fa-solid fa-file-pen"></i></div>
+                    <div class="card-title">Modul Layanan Sekolah</div>
+                </div>
+                <ul class="card-list">
+                    <li><i class="fa-solid fa-check"></i> Pengajuan Pindah/Mutasi Siswa</li>
+                    <li><i class="fa-solid fa-check"></i> Surat Keterangan Aktif Sekolah</li>
+                    <li><i class="fa-solid fa-check"></i> Layanan Informasi PPDB</li>
+                    <li><i class="fa-solid fa-check"></i> Legalisir Rapor Online</li>
+                </ul>
+                <button class="btn" onclick="alert('Mengarah ke Formulir Layanan')">Ajukan Layanan</button>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 SDN 2 KALANGLUNDO. Seluruh Hak Cipta Dilindungi.</p>
+        <p style="font-size: 0.75rem; margin-top: 4px;">Sistem Informasi Pelayanan & Pelaporan Elektronik Berbasis Web</p>
+    </footer>
+
+    <!-- JavaScript Simulasi Download -->
+    <script>
+        function handleSearch(event) {
+            event.preventDefault();
+            
+            const nisn = document.getElementById('nisn').value;
+            const kelas = document.getElementById('kelas').value;
+            const semester = document.getElementById('semester').value;
+            const resultBox = document.getElementById('resultBox');
+            const resDetail = document.getElementById('resDetail');
+
+            // Tampilkan hasil simulasi pencarian
+            resDetail.innerHTML = `NISN: <strong>${nisn}</strong> | Kelas: <strong>${kelas}</strong> | Semester: <strong>${semester}</strong>`;
+            resultBox.style.display = 'block';
+
+            // Scroll perlahan ke hasil pencarian
+            resultBox.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
