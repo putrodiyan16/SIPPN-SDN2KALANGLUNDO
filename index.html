@@ -23,6 +23,12 @@
             --radius-lg: 16px;
             --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
             --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+            
+            /* Warna tambahan untuk banner pelayanan */
+            --banner-bg-left: #fff8eb; /* Krem muda */
+            --banner-bg-right: #e0f2fe; /* Biru sangat muda */
+            --icon-circle-bg: rgba(220, 38, 38, 0.1); /* Merah transparan untuk background icon */
+            --icon-color: #dc2626; /* Merah untuk icon */
         }
 
         * {
@@ -126,6 +132,81 @@
             padding-bottom: 0.5rem;
         }
 
+        /* CSS BARU UNTUK BANNER PELAYANAN */
+        .services-banner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            border-radius: var(--radius-lg);
+            overflow: hidden; /* Agar background column tidak keluar radius */
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+        }
+
+        .service-column {
+            padding: 2rem;
+        }
+
+        .service-column.left {
+            background-color: var(--banner-bg-left);
+        }
+
+        .service-column.right {
+            background-color: var(--banner-bg-right);
+        }
+
+        .service-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .service-icon-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--icon-circle-bg);
+            border: 2px solid var(--icon-color);
+            color: var(--icon-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0; /* Agar icon tidak mengecil di layar sempit */
+            margin-top: 2px; /* Penyesuaian posisi vertikal */
+        }
+
+        .service-text h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 2px;
+        }
+
+        .service-text p {
+            font-size: 0.85rem;
+            color: var(--text-main);
+            line-height: 1.4;
+        }
+
+        /* Responsive untuk banner pelayanan */
+        @media (max-width: 900px) {
+            .services-banner {
+                grid-template-columns: 1fr; /* Jadi satu kolom di tablet/HP */
+                gap: 0;
+            }
+            .service-column {
+                padding: 1.5rem;
+            }
+        }
+
+        /* SISA CSS ASLI */
         .modules-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -133,7 +214,6 @@
             margin-bottom: 3rem;
         }
 
-        /* Module Cards */
         .card {
             background-color: var(--surface-color);
             border-radius: var(--radius-lg);
@@ -223,7 +303,6 @@
             color: white;
         }
 
-        /* Download Rapor Section (Highlight) */
         .download-section {
             background-color: var(--surface-color);
             border-radius: var(--radius-lg);
@@ -266,7 +345,6 @@
             box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.2);
         }
 
-        /* Result Download Area */
         .result-box {
             margin-top: 1.5rem;
             padding: 1rem;
@@ -294,7 +372,6 @@
             font-size: 0.85rem;
         }
 
-        /* Footer */
         footer {
             background-color: var(--primary-color);
             color: white;
@@ -345,6 +422,139 @@
 
     <!-- Main Content -->
     <main class="main-container">
+
+        <!-- ========================================= -->
+        <!-- BAGIAN BARU: REKONSTRUKSI BANNER PELAYANAN -->
+        <!-- ========================================= -->
+        <h3 class="section-title"><i class="fa-solid fa-concierge-bell"></i> Daftar Pelayanan Sekolah</h3>
+        
+        <section class="services-banner">
+            <!-- Kolom Kiri (Krem) -->
+            <div class="service-column left">
+                
+                <div class="service-item">
+                    <div class="service-icon-circle"><i class="fa-solid fa-book-open"></i></div>
+                    <div class="service-text">
+                        <h4>Pelayanan Pendidikan</h4>
+                        <p>Mendidik siswa sesuai dengan kurikulum terupdate.</p>
+                    </div>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-icon-circle"><i class="fa-solid fa-lightbulb"></i></div>
+                    <div class="service-text">
+                        <h4>Pelayanan pengembangan pendidikan anak berbakat</h4>
+                        <p>Mendampingi dan membimbing siswa sesuai dengan bakat dan keterampilannya.</p>
+                    </div>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-icon-circle"><i class="fa-solid fa-palette"></i></div>
+                    <div class="service-text">
+                        <h4>Pelayanan pengembangan minat</h4>
+                        <p>Memfasilitasi minat siswa melalui ekstra kulikuler yg memadai.</p>
+                    </div>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-icon-circle"><i class="fa-solid fa-comments"></i></div>
+                    <div class="service-text">
+                        <h4>Pelayanan bimbingan dan konseling peserta didik</h4>
+                        <p>Mendengarkan dengan seksama bisikan perasaan siswa dengan penuh cinta.</p>
+                    </div>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-icon-circle"><i class="fa-solid fa-book-reader"></i></div>
+                    <div class="service-text">
+                        <h4>Pengembangan minat baca</h4>
+                        <p>Membuka jendela pengetahuan siswa melalui Perpustakaan sekolah dan Perpustakaan Digital kapanpun dan di manapun.</p>
+                    </div>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-icon-circle"><i class="fa-solid fa-handshake-angle"></i></div>
+                    <div class="service-text">
+                        <h4>Pelayanan pendidikan inskulsif</h4>
+                        <p>Memberikan pelayanan bagi siswa inklusif tanpa diskriminasi.</p>
+                    </div>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-icon-circle"><i class="fa-solid fa-user-graduate"></i></div>
+                    <div class="service-text">
+                        <h4>Pelayanan informasi profil lulusan siswa</h4>
+                        <p>Memberikan informasi seluas-luasnya bagi alumni.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Kolom Kanan (Biru Muda) -->
+            <div class="service-column right">
+                
+                <div class="service-item">
+                    <div class="service-icon-circle"><i class="fa-solid fa-laptop-code"></i></div>
+                    <div class="service-text">
+                        <h4>Pelayanan SPMB</h4>
+                        <p>Melayani SPMB siswa tingkat akhir ke jenjang berikutnya.</p>
+                    </div>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-icon-circle"><i class="fa-solid fa-file-signature"></i></div>
+                    <div class="service-text">
+                        <h4>Pelayanan cetak ijazah dan transkrip nilai</h4>
+                        <p>Memberikan pelayanan cetak ijazah dan transkrip nilai dengan kualitas premium terstandarisasi.</p>
+                    </div>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-icon-circle"><i class="fa-solid fa-file-contract"></i></div>
+                    <div class="service-text">
+                        <h4>Pelayanan legalisir ijazah dan transkrip nilai</h4>
+                        <p>Memberikan pelayanan legalisir dokumen bagi alumni.</p>
+                    </div>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-icon-circle"><i class="fa-solid fa-camera"></i></div>
+                    <div class="service-text">
+                        <h4>Pelayanan cetak foto diri</h4>
+                        <p>Memberikan pelayanan cetak foto dengan kualitas gambar terbaik.</p>
+                    </div>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-icon-circle"><i class="fa-solid fa-file-medical"></i></div>
+                    <div class="service-text">
+                        <h4>Pelayanan surat pengantar berobat</h4>
+                        <p>Memprioritaskan kesehatan siswa dengan memberikan pelayanan surat pengantar berobat tanpa berbelit.</p>
+                    </div>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-icon-circle"><i class="fa-solid fa-print"></i></div>
+                    <div class="service-text">
+                        <h4>Pelayanan fotokopi dokumen GRATIS</h4>
+                        <p>Memberikan pelayanan fotocopy gratis bagi siswa.</p>
+                    </div>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-icon-circle"><i class="fa-solid fa-utensils"></i></div>
+                    <div class="service-text">
+                        <h4>Pelayanan Makan Bergizi Gratis</h4>
+                        <p>Melayani pendistribusian program Makan Bergizi Gratis.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- ========================================= -->
+        <!--       AKHIR BAGIAN BANNER PELAYANAN        -->
+        <!-- ========================================= -->
+
 
         <!-- Fitur Khusus Download Rapor & Nilai -->
         <section class="download-section" id="unduh-rapor">
